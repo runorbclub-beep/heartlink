@@ -14,6 +14,7 @@ Built by a 64-year-old retired engineer as an anniversary gift for his wife. Now
 |---|---|
 | 🛒 **Buy a pre-built watch** | [Gumroad — $99](https://gumroad.com) |
 | 🔧 **Build your own** | See firmware/ and docs/ below |
+| 📱 **iOS & Android app** | Flutter cross-platform |
 | 📖 **Read the story** | [Substack — HeartLink Diaries](https://runorb.substack.com) |
 | 💬 **Join the builders** | [Telegram group](#) |
 | 📧 **Contact** | hello@heartlink.work |
@@ -66,7 +67,7 @@ heartlink/
 | Battery | 100mAh LiPo (USB-C charging) |
 | Standby Time | ~1 month |
 | Connectivity | BLE to smartphone |
-| App | WeChat Mini-Program |
+| App | iOS & Android (Flutter, open source) |
 | Case | 3D printed (matte black) |
 | Wristband | 22mm silicone (replaceable) |
 
