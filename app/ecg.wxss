@@ -1,0 +1,270 @@
+page {
+  --color-bg: #111111;
+  --color-card: #1E1E1E;
+  --color-text: #FFFFFF;
+  --color-dim: #888888;
+  --color-green: #00FF88;
+  --color-purple: #7657DA;
+  --color-red: #E53935;
+  --color-border: #333333;
+}
+
+.Page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  padding-bottom: 40px;
+}
+
+/* 顶部导航 */
+.Header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  padding: 0 16px;
+}
+
+.BackBtn {
+  color: var(--color-purple);
+  font-size: 16px;
+  padding: 8px 4px;
+}
+
+.Title {
+  color: var(--color-text);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.Placeholder {
+  width: 60px;
+}
+
+/* 状态栏 */
+.StatusBar {
+  text-align: center;
+  padding: 8px 16px;
+}
+
+.StatusText {
+  color: var(--color-dim);
+  font-size: 14px;
+}
+
+.StatusText.Recording {
+  color: var(--color-green);
+  font-weight: bold;
+}
+
+/* 进度条 */
+.ProgressBar {
+  margin: 4px 16px;
+  height: 8px;
+  background: var(--color-border);
+  border-radius: 4px;
+  position: relative;
+  overflow: visible;
+}
+
+.ProgressFill {
+  height: 100%;
+  background: var(--color-green);
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+
+.ProgressLabel {
+  position: absolute;
+  right: 0;
+  top: -18px;
+  font-size: 11px;
+  color: var(--color-green);
+}
+
+/* 设备连接区 */
+.DeviceSection {
+  margin: 12px 16px;
+}
+
+.ScanBtn {
+  padding: 14px;
+  background: var(--color-card);
+  border: 1px solid var(--color-purple);
+  border-radius: 12px;
+  text-align: center;
+  font-size: 16px;
+  color: var(--color-text);
+}
+
+.ScanBtn.Scanning {
+  border-color: var(--color-red);
+  color: var(--color-red);
+}
+
+.DeviceList {
+  max-height: 200px;
+  margin-top: 8px;
+}
+
+.DeviceItem {
+  padding: 12px 16px;
+  background: var(--color-card);
+  border-radius: 8px;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.DeviceName {
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+.DeviceRSSI {
+  color: var(--color-dim);
+  font-size: 12px;
+}
+
+.NoDevice {
+  text-align: center;
+  color: var(--color-dim);
+  font-size: 13px;
+  padding: 20px;
+}
+
+/* 已连接信息 */
+.ConnectedInfo {
+  display: flex;
+  align-items: center;
+  margin: 8px 16px;
+  padding: 10px 16px;
+  background: var(--color-card);
+  border-radius: 8px;
+}
+
+.ConnectedDot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-green);
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.ConnectedName {
+  color: var(--color-green);
+  font-size: 14px;
+  flex: 1;
+}
+
+.DisconnectBtn {
+  color: var(--color-red);
+  font-size: 13px;
+  padding: 4px 12px;
+  border: 1px solid var(--color-red);
+  border-radius: 12px;
+}
+
+/* 波形画布 */
+.CanvasWrap {
+  margin: 12px 16px;
+  background: var(--color-card);
+  border-radius: 8px;
+  padding: 8px;
+  position: relative;
+}
+
+.EcgCanvas {
+  width: 100%;
+  height: 180px;
+  border-radius: 4px;
+}
+
+.CanvasLabel {
+  text-align: center;
+  font-size: 12px;
+  color: var(--color-dim);
+  padding: 4px;
+}
+
+/* 操作按钮 */
+.ActionSection {
+  margin: 12px 16px;
+  text-align: center;
+}
+
+.ActionBtn {
+  font-size: 16px;
+  height: 48px;
+  line-height: 48px;
+  border-radius: 24px;
+  color: #fff;
+  border: none;
+  width: 100%;
+}
+
+.ActionBtn::after { border: none; }
+
+.RecordBtn {
+  background: var(--color-green);
+  color: #000;
+  font-weight: bold;
+}
+
+.ResetBtn {
+  background: var(--color-purple);
+}
+
+.RecordingIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--color-green);
+  font-size: 16px;
+  padding: 14px;
+}
+
+.PulseDot {
+  animation: pulse 1s infinite;
+  color: var(--color-red);
+  font-size: 20px;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* 上传结果 */
+.UploadResult {
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-green);
+  margin: 4px 16px;
+  padding: 8px;
+  background: var(--color-card);
+  border-radius: 8px;
+}
+
+/* 使用说明 */
+.Instructions {
+  margin: 16px;
+  padding: 12px 16px;
+  background: var(--color-card);
+  border-radius: 8px;
+}
+
+.InstrTitle {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.InstrItem {
+  font-size: 12px;
+  color: var(--color-dim);
+  line-height: 1.8;
+}

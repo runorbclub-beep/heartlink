@@ -1,0 +1,94 @@
+<view class="container" style="left:0px;right:0px;margin-top:0px">
+   <view class="Page">
+
+      <!--顶部导航-->
+      <view class="Header">
+         <view class="BackBtn" bindtap="GoBack">← 返回</view>
+         <view class="Title">💓 心电检测</view>
+         <view class="Placeholder"></view>
+      </view>
+
+      <!--状态提示-->
+      <view class="StatusBar">
+         <text class="StatusText {{ecgStatus == 'recording' ? 'Recording' : ''}}">{{statusText}}</text>
+      </view>
+
+      <!--进度条-->
+      <view class="ProgressBar" wx:if="{{ecgStatus == 'recording' || ecgStatus == 'done'}}">
+         <view class="ProgressFill" style="width:{{progress}}%"></view>
+         <text class="ProgressLabel">{{elapsed}}s / 10s</text>
+      </view>
+
+      <!--设备连接区-->
+      <view class="DeviceSection" wx:if="{{!connected && ecgStatus != 'done'}}">
+         <!--搜索按钮-->
+         <view class="ScanBtn {{scanning ? 'Scanning' : ''}}" bindtap="{{scanning ? 'stopScan' : 'startScan'}}">
+            <text>{{scanning ? '⏹ 停止搜索' : '🔍 搜索设备'}}</text>
+         </view>
+
+         <!--设备列表-->
+         <scroll-view scroll-y class="DeviceList" wx:if="{{showDevicesList}}">
+            <view class="DeviceItem" wx:for="{{devicesList}}" wx:key="deviceId"
+                  data-device-id="{{item.deviceId}}" data-device-name="{{item.name}}"
+                  bindtap="connectDevice">
+               <view class="DeviceName">{{item.name}}</view>
+               <view class="DeviceRSSI">信号: {{item.RSSI}}</view>
+            </view>
+            <view class="NoDevice" wx:if="{{devicesList.length === 0 && !scanning}}">
+               未搜索到设备，请确认HeartLink已开机
+            </view>
+         </scroll-view>
+      </view>
+
+      <!--已连接信息-->
+      <view class="ConnectedInfo" wx:if="{{connected}}">
+         <text class="ConnectedDot"></text>
+         <text class="ConnectedName">{{deviceName}}</text>
+         <view class="DisconnectBtn" bindtap="disconnectDevice">断开</view>
+      </view>
+
+      <!--ECG波形画布-->
+      <view class="CanvasWrap">
+         <canvas class="EcgCanvas" canvas-id="ecgCanvas"
+                 style="width:{{canvasWidth}}px;height:{{canvasHeight}}px">
+         </canvas>
+         <!--标注-->
+         <view class="CanvasLabel" wx:if="{{ecgStatus == 'done'}}">
+            <text>10秒心电波形 · {{ecgSamples.length}}个采样点</text>
+         </view>
+      </view>
+
+      <!--操作按钮-->
+      <view class="ActionSection">
+         <!--开始采集（仅在已连接且非采集状态）-->
+         <button class="ActionBtn RecordBtn" wx:if="{{connected && ecgStatus != 'recording' && ecgStatus != 'done'}}"
+                 bindtap="startRecording">▶ 开始采集 (10秒)</button>
+
+         <!--采集中的动画-->
+         <view class="RecordingIndicator" wx:if="{{ecgStatus == 'recording'}}">
+            <text class="PulseDot">●</text>
+            <text>收集中...</text>
+         </view>
+
+         <!--重测-->
+         <button class="ActionBtn ResetBtn" wx:if="{{ecgStatus == 'done'}}"
+                 bindtap="reset">🔄 重新检测</button>
+      </view>
+
+      <!--上传结果-->
+      <view class="UploadResult" wx:if="{{uploadResult}}">
+         <text>{{uploadResult}}</text>
+      </view>
+
+      <!--使用说明-->
+      <view class="Instructions">
+         <view class="InstrTitle">使用说明</view>
+         <view class="InstrItem">1. 左右手各贴一片心电电极片</view>
+         <view class="InstrItem">2. 将导联线夹子连接到电极片</view>
+         <view class="InstrItem">3. 搜索并连接 HeartLink 设备</view>
+         <view class="InstrItem">4. 点击「开始采集」，保持静止10秒</view>
+         <view class="InstrItem">5. 波形自动上传至云端</view>
+      </view>
+
+   </view>
+</view>
