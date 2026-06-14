@@ -101,4 +101,4 @@ Firmware & Software: [MIT](LICENSE)
 
 ---
 
-*Built with ❤️ and 🤖 by a 64-year-old who learned AI in retirement.*
+*Built with ❤️ and 🤖 by a retired/AI aided engineer.*
